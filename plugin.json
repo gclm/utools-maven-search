@@ -11,8 +11,8 @@
       "explain": "根据内容查询依赖版本",
       "cmds": [
         "maven",
-        "mvn",
-        "gradle"
+        "gradle",
+        "mvn"
       ]
     }
   ]
