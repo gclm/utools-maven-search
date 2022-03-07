@@ -137,6 +137,8 @@ function copyTypeSelect(item, callbackSetList) {
     console.log('用户点击的结果', versionItems)
     result.push({title: "Maven", data: versionItems})
     result.push({title: "Gradle", data: versionItems})
+    result.push({title: "Gradle (Short)", data: versionItems})
+    result.push({title: "Gradle (Kotlin)", data: versionItems})
     callbackSetList(result)
 }
 
@@ -149,8 +151,13 @@ function copyText(item) {
     let resultString = '<dependency>\n\t<groupId>' + item.g + '</groupId>\n\t<artifactId>' + item.a + '</artifactId>\n\t<version>' + item.v + '</version>\n</dependency>'
 
     if (item.type === "Gradle") {
-        resultString = "compile group: '" + item.g + "', name: '" + item.a + "', version: '" + item.v + "'"
+        resultString = "implementation group: '" + item.g + "', name: '" + item.a + "', version: '" + item.v + "'"
+    } else if (item.type === "Gradle (Short)") {
+        resultString = "implementation '" + item.g + ":" + item.a + ":" + item.v + "'"
+    } else if (item.type === "Gradle (Kotlin)") {
+        resultString = "implementation(\"" + item.g + ":" + item.a + ":" + item.v + "\")"
     }
+
     utools.copyText(resultString)
     utools.showNotification(item.type + " 格式依赖已经复制到系统剪切板")
     window.utools.outPlugin()
@@ -159,8 +166,7 @@ function copyText(item) {
 window.exports = {
     // Maven 仓库查询
     "maven": {
-        mode: "list",
-        args: {
+        mode: "list", args: {
             // 搜索调用
             search: (action, searchWord, callbackSetList) => {
                 // 判断用户是否输入内容

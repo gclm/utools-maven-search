@@ -1,8 +1,8 @@
 {
   "pluginName": "maven 依赖查询",
-  "description": "maven和gradle依赖查询",
+  "description": "Maven、Gradle、Kotlin依赖查询",
   "author": "孤城落寞",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "logo": "logo.png",
   "preload": "preload.js",
   "features": [
